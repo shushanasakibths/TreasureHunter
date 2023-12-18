@@ -40,6 +40,17 @@ public class Hunter {
     }
 
     /**
+     * Sets kit to have all items from shop
+     */
+    public void setKit() {
+        kit[0] = "rope";
+        kit[1] = "water";
+        kit[2] = "machete";
+        kit[3] = "horse";
+        kit[4] = "boat";
+    }
+
+    /**
      * Buys an item from a shop.
      *
      * @param item The item the hunter is buying.
