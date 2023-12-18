@@ -139,24 +139,25 @@ public class Hunter {
      *
      * @return The printable String representation of the inventory.
      */
-    public String getInventory() {
-        String printableKit = "";
-        String space = " ";
+     public String getInventory() {
+         String printableKit = Colors.PURPLE + "" + Colors.RESET;
+         String space = " ";
 
-        for (String item : kit) {
-            if (item != null) {
-                printableKit += item + space;
-            }
-        }
+         for (String item : kit) {
+             if (item != null) {
+                 printableKit += item + space;
+             }
+         }
 
-        return printableKit;
-    }
+         return printableKit;
+     }
+
 
     /**
      * @return A string representation of the hunter.
      */
     public String toString() {
-        String str = hunterName + " has " + gold + " gold";
+        String str = Colors.YELLOW + hunterName + " has " + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
