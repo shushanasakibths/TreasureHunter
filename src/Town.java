@@ -11,6 +11,7 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private static boolean lose;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -30,10 +31,14 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        lose = false;
     }
 
     public String getLatestNews() {
         return printMessage;
+    }
+    public static boolean getLose() {
+        return lose;
     }
 
     /**
@@ -108,7 +113,12 @@ public class Town {
             } else {
                 printMessage += Colors.RED + "That'll teach you to go lookin' fer trouble in MY town! Now pay up!" + Colors.RESET;
                 printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
-                hunter.changeGold(-goldDiff);
+                if (goldDiff > hunter.getGold()) {
+                    printMessage += "\nYou couldn't pay up so your opponent murdered you...better luck next time!";
+                    lose = true;
+                } else {
+                    hunter.changeGold(-goldDiff);
+                }
             }
         }
     }
@@ -127,13 +137,13 @@ public class Town {
         double rnd = Math.random();
         if (rnd < .2) {
             return new Terrain("Mountains", "Rope");
-        } else if (rnd < .4) {
+        } else if (rnd < .3) {
             return new Terrain("Ocean", "Boat");
-        } else if (rnd < .6) {
+        } else if (rnd < .4) {
             return new Terrain("Plains", "Horse");
-        } else if (rnd < .8) {
+        } else if (rnd < .6) {
             return new Terrain("Desert", "Water");
-        } else  if (rnd < 1){
+        } else  if (rnd < .8){
             return new Terrain("Jungle", "Machete");
         } else {
             return new Terrain("Marsh", "Boots");

@@ -105,6 +105,9 @@ public class TreasureHunter {
         while (!choice.equals("x")) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
+            if (Town.getLose()) {
+                System.exit(0);
+            }
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
