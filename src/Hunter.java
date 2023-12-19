@@ -48,6 +48,7 @@ public class Hunter {
         kit[2] = "machete";
         kit[3] = "horse";
         kit[4] = "boat";
+        kit[5] = "boots";
     }
 
     /**
