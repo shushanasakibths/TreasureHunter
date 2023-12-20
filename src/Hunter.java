@@ -74,6 +74,12 @@ public class Hunter {
         return true;
     }
 
+    public void treasure() {
+        for (int i = 0; i < treasure.length; i++) {
+
+        }
+    }
+
     /**
      * The Hunter is selling an item to a shop for gold.<p>
      * This method checks to make sure that the seller has the item and that the seller is getting more than 0 gold.
