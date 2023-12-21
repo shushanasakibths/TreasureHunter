@@ -8,7 +8,7 @@ public class Hunter {
     //instance variables
     private String hunterName;
     private String[] kit;
-    private String[] treasure;
+    private String[] collectedTreasures;
     private int gold;
 
     /**
@@ -20,7 +20,7 @@ public class Hunter {
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
         kit = new String[7]; // only 5 possible items can be stored in kit
-        treasure = new String[4];
+        collectedTreasures = new String[4];
         gold = startingGold;
     }
 
@@ -75,9 +75,21 @@ public class Hunter {
         return true;
     }
 
-    public void treasure() {
-        for (int i = 0; i < treasure.length; i++) {
-
+    /**
+     * Adds a treasure to the hunter's collected treasures.
+     *
+     * @param treasure The treasure to be added.
+     */
+    public void addTreasure(String treasure) {
+        for (int i = 0; i < collectedTreasures.length; i++) {
+            if (collectedTreasures[i] == null) {
+                collectedTreasures[i] = treasure;
+                System.out.println("You added a " + treasure + " to your collection!");
+                return;
+            } else if (collectedTreasures[i].equals(treasure)) {
+                System.out.println("You already have a " + treasure + ".");
+                return;
+            }
         }
     }
 

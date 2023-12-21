@@ -1,9 +1,9 @@
+import java.util.Random;
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all the things a Hunter can do in town.
  * This code has been adapted from Ivan Turner's original program -- thank you Mr. Turner!
  */
-
 public class Town {
     // instance variables
     private Hunter hunter;
@@ -12,7 +12,9 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
     private static boolean lose;
-    private boolean huntTreasure;
+    private boolean searchedForTreasure;
+    private String[] possibleTreasures = {"crown", "trophy", "gem", "dust"};
+    private String foundTreasure;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -33,7 +35,7 @@ public class Town {
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
         lose = false;
-        huntTreasure = false;
+        searchedForTreasure = false;
     }
 
     public String getLatestNews() {
@@ -49,6 +51,9 @@ public class Town {
      * @param hunter The arriving Hunter.
      */
     public void hunterArrives(Hunter hunter) {
+        Random random = new Random();
+        int index = random.nextInt(possibleTreasures.length);
+        foundTreasure = possibleTreasures[index];
         this.hunter = hunter;
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
@@ -79,6 +84,21 @@ public class Town {
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
     }
+
+    public void huntForTreasure() {
+        if (searchedForTreasure) {
+            System.out.println("You have already searched this town.");
+            return;
+        }
+        if (!foundTreasure.equals("dust")) {
+            System.out.println("You found a " + foundTreasure + "!");
+            hunter.addTreasure(foundTreasure);
+        } else {
+            System.out.println("You found dust. Nothing special.");
+        }
+        searchedForTreasure = true;
+    }
+
 
     /**
      * Handles calling the enter method on shop whenever the user wants to access the shop.
@@ -122,15 +142,6 @@ public class Town {
                     hunter.changeGold(-goldDiff);
                 }
             }
-        }
-    }
-
-    public void huntForTreasure() {
-        if (!huntTreasure) {
-            printMessage += "You found " + treasure() + "!";
-            huntTreasure = true;
-        } else {
-            printMessage += "You've already searched this town!";
         }
     }
 
