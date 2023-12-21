@@ -17,6 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     private boolean testMode;
+    private static boolean samuraiMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -38,6 +39,9 @@ public class TreasureHunter {
         showMenu();
     }
 
+    public static boolean getSamuraiMode() {
+        return samuraiMode;
+    }
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
@@ -53,6 +57,8 @@ public class TreasureHunter {
             hardMode = true;
         } else if (hard.equals("test")) {
             testMode = true;
+        } else if (hard.equals("s")) {
+            samuraiMode = true;
         }
 
         if (testMode) {

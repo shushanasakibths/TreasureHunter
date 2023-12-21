@@ -19,7 +19,11 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
-        kit = new String[7]; // only 5 possible items can be stored in kit
+        if (TreasureHunter.getSamuraiMode()) {
+            kit = new String[8];
+        } else {
+            kit = new String[7];
+        }
         collectedTreasures = new String[4];
         gold = startingGold;
     }
@@ -91,6 +95,15 @@ public class Hunter {
                 return;
             }
         }
+    }
+
+    public boolean hasSword() {
+        for (int i = 0; i < kit.length; i++) {
+            if (kit[i].equals("sword")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -15,6 +15,7 @@ public class Shop {
     private static final int BOAT_COST = 20;
     private static final int BOOTS_COST = 10;
     private static final int SHOVEL_COST = 8;
+    private static final int SWORD_COST = 0;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -91,6 +92,7 @@ public class Shop {
         str += "Boat: " + BOAT_COST + " gold\n";
         str += "Boots: " + BOOTS_COST + " gold\n";
         str += "Shovel(SALE!!!): " + SHOVEL_COST + "gold\n";
+        str += "Sword: " + SWORD_COST + "gold\n";
 
         return str;
     }
@@ -157,8 +159,10 @@ public class Shop {
             return BOAT_COST;
         } else if(item.equals("boots")){
             return BOOTS_COST;
-        }else if (item.equals("shovel")){
+        }else if (item.equals("shovel")) {
             return SHOVEL_COST;
+        } else if (item.equals("sword")) {
+            return SWORD_COST;
         }else {
             return 0;
         }

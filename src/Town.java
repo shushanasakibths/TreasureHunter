@@ -119,6 +119,8 @@ public class Town {
         double noTroubleChance;
         if (toughTown) {
             noTroubleChance = 0.66;
+        } else if (hunter.hasSword()) {
+            noTroubleChance = 1;
         } else {
             noTroubleChance = 0.33;
         }
