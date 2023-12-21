@@ -42,6 +42,7 @@ public class TreasureHunter {
     public static boolean getSamuraiMode() {
         return samuraiMode;
     }
+
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */

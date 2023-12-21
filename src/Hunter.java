@@ -7,7 +7,7 @@
 public class Hunter {
     //instance variables
     private String hunterName;
-    private String[] kit;
+    private static String[] kit;
     private String[] collectedTreasures;
     private int gold;
 
@@ -97,15 +97,6 @@ public class Hunter {
         }
     }
 
-    public boolean hasSword() {
-        for (int i = 0; i < kit.length; i++) {
-            if (kit[i].equals("sword")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * The Hunter is selling an item to a shop for gold.<p>
      * This method checks to make sure that the seller has the item and that the seller is getting more than 0 gold.
@@ -161,7 +152,7 @@ public class Hunter {
      * @param item The search item
      * @return true if the item is found.
      */
-    public boolean hasItemInKit(String item) {
+    public static boolean hasItemInKit(String item) {
         for (String tmpItem : kit) {
             if (item.equals(tmpItem)) {
                 // early return
