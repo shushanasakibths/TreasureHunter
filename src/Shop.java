@@ -50,7 +50,10 @@ public class Shop {
             System.out.print("What're you lookin' to buy? ");
             String item = SCANNER.nextLine().toLowerCase();
             int cost = checkMarketPrice(item, true);
-            if (TreasureHunter.getSamuraiMode()) {
+            if (Hunter.hasItemInKit("sword")) {
+                System.out.println("The sword intimidates the shopkeeper and he gives you the item freely");
+                buyItem(item);
+            } else if (TreasureHunter.getSamuraiMode()) {
                 System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
                 String option = SCANNER.nextLine().toLowerCase();
 
@@ -99,8 +102,9 @@ public class Shop {
         str += "Boat: " + BOAT_COST + " gold\n";
         str += "Boots: " + BOOTS_COST + " gold\n";
         str += "Shovel(SALE!!!): " + SHOVEL_COST + " gold\n";
-        str += "Sword: " + SWORD_COST + " gold\n";
-
+        if (TreasureHunter.getSamuraiMode()) {
+            str += "Sword: " + SWORD_COST + " gold\n";
+        }
         return str;
     }
 
@@ -113,8 +117,6 @@ public class Shop {
         int costOfItem = checkMarketPrice(item, true);
         if (customer.buyItem(item, costOfItem)) {
             System.out.println("Ye' got yerself a " + item + ". Come again soon.");
-        } else if (Hunter.hasItemInKit("sword")) {
-            System.out.println("The sword intimidates the shopkeeper and he gives you the item freely");
         } else {
             System.out.println("Hmm, either you don't have enough gold or you've already got one of those!");
         }
@@ -156,9 +158,6 @@ public class Shop {
      * @return The cost of the item or 0 if the item is not found.
      */
     public int getCostOfItem(String item) {
-        if (Hunter.hasItemInKit("sword")) {
-            return 0;
-        }
         if (item.equals("water")) {
             return WATER_COST;
         } else if (item.equals("rope")) {
