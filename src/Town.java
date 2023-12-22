@@ -15,6 +15,7 @@ public class Town {
     private boolean searchedForTreasure;
     private String[] possibleTreasures = {"crown", "trophy", "gem", "dust"};
     private String foundTreasure;
+    private Random random;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -36,6 +37,7 @@ public class Town {
         toughTown = (Math.random() < toughness);
         lose = false;
         searchedForTreasure = false;
+        random = new Random();
     }
 
     public String getLatestNews() {
@@ -51,7 +53,6 @@ public class Town {
      * @param hunter The arriving Hunter.
      */
     public void hunterArrives(Hunter hunter) {
-        Random random = new Random();
         int index = random.nextInt(possibleTreasures.length);
         foundTreasure = possibleTreasures[index];
         this.hunter = hunter;
@@ -148,6 +149,16 @@ public class Town {
         }
     }
 
+    public void digTreasure(){
+        int chance = random.nextInt(2 + 1) - 1;
+        if (chance == 1){
+            int gold = random.nextInt(20 - 1) + 1;
+            System.out.println("You dug up " + gold + " gold!");
+            hunter.changeGold(gold);
+        } else{
+            System.out.println("You dug but only found dirt. ");
+        }
+    }
 
     public String toString() {
         return Colors.CYAN + "This nice little town is surrounded by " + terrain.getTerrainName() + "." + Colors.RESET;

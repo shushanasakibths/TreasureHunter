@@ -18,6 +18,7 @@ public class TreasureHunter {
     private boolean hardMode;
     private boolean testMode;
     private static boolean samuraiMode;
+    private boolean dug;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -144,6 +145,7 @@ public class TreasureHunter {
                 // This town is going away so print its news ahead of time.
                 System.out.println(currentTown.getLatestNews());
                 enterTown();
+                dug = false;
             }
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
@@ -151,8 +153,18 @@ public class TreasureHunter {
             currentTown.huntForTreasure();
         }else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
-        } else {
+        } else if (choice.equals("d")){
+            if (!dug && hunter.hasItemInKit("shovel")){
+                currentTown.digTreasure();
+                dug = true;
+            } else if (dug){
+                System.out.println("You already dug for gold in this town.");
+            } else{
+                System.out.println("You can't dig for gold without a shovel.");
+            }
+        }else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
     }
+
 }
