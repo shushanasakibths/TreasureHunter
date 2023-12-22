@@ -24,7 +24,7 @@ public class Hunter {
         } else {
             kit = new String[7];
         }
-        collectedTreasures = new String[4];
+        collectedTreasures = new String[3];
         gold = startingGold;
     }
 
@@ -93,6 +93,10 @@ public class Hunter {
             if (collectedTreasures[i] == null) {
                 collectedTreasures[i] = treasure;
                 System.out.println("You added a " + treasure + " to your collection!");
+                if (!(collectedTreasures[0] == null) && !(collectedTreasures[1] == (null)) & !(collectedTreasures[2] == (null))) {
+                    System.out.println("Congratulations, you have found the last of the three treasures, you win!");
+                    System.exit(0);
+                }
                 return;
             } else if (collectedTreasures[i].equals(treasure)) {
                 System.out.println("You already have a " + treasure + ".");
