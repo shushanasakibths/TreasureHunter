@@ -195,7 +195,32 @@ public class Hunter {
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
+        if(!treasureEmpty()){
+            str += "\nTreasures found: " + Colors.PURPLE + getTreasures() + Colors.RESET;
+        } else if(treasureEmpty()){
+            str += "\nTreasures found: " + Colors.PURPLE + "None" + Colors.RESET;
+        }
         return str;
+    }
+
+    public String getTreasures(){
+        String treasures = Colors.PURPLE + "" + Colors.RESET;
+        String space = " ";
+        for (String treasure : collectedTreasures) {
+            if(treasure != null){
+                treasures += treasure + space;
+            }
+        }
+        return treasures;
+    }
+
+    private boolean treasureEmpty() {
+        for (String string : collectedTreasures) {
+            if (string != null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
