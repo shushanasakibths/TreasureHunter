@@ -53,6 +53,7 @@ public class Town {
      * @param hunter The arriving Hunter.
      */
     public void hunterArrives(Hunter hunter) {
+        printMessage = "";
         int index = random.nextInt(possibleTreasures.length);
         foundTreasure = possibleTreasures[index];
         this.hunter = hunter;
@@ -71,6 +72,7 @@ public class Town {
      * @return true if the Hunter was able to leave town.
      */
     public boolean leaveTown() {
+        printMessage = "";
         boolean canLeaveTown = terrain.canCrossTerrain(hunter);
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
@@ -87,6 +89,7 @@ public class Town {
     }
 
     public void huntForTreasure() {
+        printMessage = "";
         if (searchedForTreasure) {
             System.out.println("You have already searched this town.");
             return;
@@ -117,6 +120,7 @@ public class Town {
      * The tougher the town, the easier it is to find a fight, and the harder it is to win one.
      */
     public void lookForTrouble() {
+        printMessage = "";
         double noTroubleChance;
         if (toughTown) {
             noTroubleChance = 0.66;
@@ -135,11 +139,11 @@ public class Town {
                  hunter.changeGold(goldDiff);
              } else if ((Math.random() > noTroubleChance) || easyModeWinChance < 8) {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
-                printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RESET;
+                printMessage += "\nYou won the brawl and receive " +  Colors.YELLOW + goldDiff + " gold." + Colors.RESET;
                 hunter.changeGold(goldDiff);
              } else {
                 printMessage += Colors.RED + "That'll teach you to go lookin' fer trouble in MY town! Now pay up!" + Colors.RESET;
-                printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
+                printMessage += "\nYou lost the brawl and pay " + Colors.YELLOW + goldDiff + " gold.";
                 if (goldDiff > hunter.getGold()) {
                     printMessage += "\nYou couldn't pay up so your opponent murdered you...better luck next time!";
                     lose = true;
@@ -151,10 +155,11 @@ public class Town {
     }
 
     public void digTreasure(){
+        printMessage = "";
         int chance = random.nextInt(2 + 1) - 1;
         if (chance == 1){
             int gold = random.nextInt(20 - 1) + 1;
-            System.out.println("You dug up " + gold + " gold!");
+            System.out.println("You dug up " +  Colors.YELLOW + gold + " gold!" + Colors.RESET);
             hunter.changeGold(gold);
         } else{
             System.out.println("You dug but only found dirt. ");
@@ -184,19 +189,6 @@ public class Town {
             return new Terrain("Jungle", "Machete");
         } else {
             return new Terrain("Marsh", "Boots");
-        }
-    }
-
-    private String treasure() {
-        double rnd = Math.random();
-        if (rnd < .2) {
-            return "crown";
-        } else if (rnd < .4) {
-            return  "trophy";
-        } else if (rnd < .6) {
-            return "gem";
-        } else {
-            return "dust";
         }
     }
 

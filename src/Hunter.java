@@ -53,13 +53,13 @@ public class Hunter {
      * Sets kit to have all items from shop
      */
     public void setKit() {
-        kit[0] = "rope";
-        kit[1] = "water";
-        kit[2] = "machete";
-        kit[3] = "horse";
-        kit[4] = "boat";
-        kit[5] = "boots";
-        kit[6] = "shovel";
+        kit[0] = Colors.PURPLE + "rope" + Colors.RESET;
+        kit[1] = Colors.PURPLE + "water" + Colors.RESET;
+        kit[2] = Colors.PURPLE + "machete" + Colors.RESET;
+        kit[3] = Colors.PURPLE + "horse" + Colors.RESET;
+        kit[4] = Colors.PURPLE + "boat" + Colors.RESET;
+        kit[5] = Colors.PURPLE + "boots" + Colors.RESET;
+        kit[6] = Colors.PURPLE + "shovel" + Colors.RESET;
     }
 
     /**
@@ -178,12 +178,12 @@ public class Hunter {
      * @return The printable String representation of the inventory.
      */
      public String getInventory() {
-         String printableKit = Colors.PURPLE + "" + Colors.RESET;
+         String printableKit = "";
          String space = " ";
 
          for (String item : kit) {
              if (item != null) {
-                 printableKit += item + space;
+                 printableKit += Colors.PURPLE + item + space + Colors.RESET;
              }
          }
 
@@ -195,7 +195,7 @@ public class Hunter {
      * @return A string representation of the hunter.
      */
     public String toString() {
-        String str = Colors.YELLOW + hunterName + " has " + gold + " gold" + Colors.RESET;
+        String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }

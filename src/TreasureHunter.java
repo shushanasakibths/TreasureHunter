@@ -55,12 +55,12 @@ public class TreasureHunter {
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
     private void welcomePlayer() {
-        System.out.println("Welcome to TREASURE HUNTER!");
+        System.out.println("Welcome to " + Colors.YELLOW + "TREASURE HUNTER!" + Colors.RESET);
         System.out.println("Going hunting for the big treasure, eh?");
         System.out.print("What's your name, Hunter? ");
         String name = SCANNER.nextLine().toLowerCase();
 
-        System.out.print("(h)ard, (e)asy, or (n)ormal mode? ");
+        System.out.print(Colors.RED + "(h)ard" + Colors.RESET + ", " + Colors.GREEN + "(e)asy" + Colors.RESET + ", or " + Colors.CYAN + "(n)ormal" + Colors.RESET + " mode? ");
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("h")) {
             hardMode = true;
@@ -130,12 +130,12 @@ public class TreasureHunter {
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure.");
-            System.out.println("(D)ig for gold!");
+            System.out.println(Colors.RED + "(B)" + Colors.RESET + "uy something at the shop.");
+            System.out.println(Colors.YELLOW + "(S)" + Colors.RESET + "ell something at the shop.");
+            System.out.println(Colors.GREEN + "(M)" + Colors.RESET+ "ove on to a different town.");
+            System.out.println(Colors.CYAN + "(L)" + Colors.RESET + "ook for trouble!");
+            System.out.println(Colors.BLUE + "(H)" + Colors.RESET + "unt for treasure.");
+            System.out.println(Colors.WHITE + "(D)" + Colors.RESET + "ig for gold!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
             System.out.print("What's your next move? ");
