@@ -17,6 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     private boolean testMode;
+    private static boolean easyMode;
     private static boolean samuraiMode;
     private boolean dug;
 
@@ -29,6 +30,7 @@ public class TreasureHunter {
         hunter = null;
         hardMode = false;
         testMode = false;
+        easyMode = false;
     }
 
     /**
@@ -44,6 +46,11 @@ public class TreasureHunter {
         return samuraiMode;
     }
 
+    public static boolean getEasyMode() {
+        return easyMode;
+    }
+
+
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
@@ -53,12 +60,14 @@ public class TreasureHunter {
         System.out.print("What's your name, Hunter? ");
         String name = SCANNER.nextLine().toLowerCase();
 
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("(h)ard, (e)asy, or (n)ormal mode? ");
         String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        if (hard.equals("h")) {
             hardMode = true;
         } else if (hard.equals("test")) {
             testMode = true;
+        } else if (hard.equals("e")) {
+            easyMode = true;
         } else if (hard.equals("s")) {
             samuraiMode = true;
         }
@@ -66,6 +75,8 @@ public class TreasureHunter {
         if (testMode) {
             hunter = new Hunter(name, 100);
             hunter.setKit();
+        } else if (easyMode) {
+            hunter = new Hunter(name, 20);
         } else {
             hunter = new Hunter(name, 10);
         }
